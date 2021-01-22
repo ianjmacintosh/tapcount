@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './App';
 
 test('renders the counter', () => {
@@ -17,11 +18,23 @@ test('renders controls', () => {
     render(<App />);
     const controls = screen.getByTestId('controls-component');
     expect(controls).toBeInTheDocument();
-})
+});
 
-/*
-App expectations:
-* Shows a counter
-* Shows a timer
-* Shows a control area
-*/
+test('clicking on the document increments the counter', () => {
+  render(<App />);
+  const count = screen.getByTestId('count');
+
+  userEvent.click(document.querySelector('body'))
+
+  // Assert
+  expect(count).toHaveTextContent(/^1$/);
+});
+
+test('clicking on the counter reset button resets the counter', () => {
+  render(<App />);
+  const counterReset = screen.getByTestId('counterResetButton');
+  const count = screen.getByTestId('count');
+  userEvent.click(counterReset);
+
+  expect(count).toHaveTextContent(/^0$/);
+})

@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class Counter extends React.Component {
-    state = {
-        count: 0
+    static propTypes = {
+        count: PropTypes.number,
+        setCount: PropTypes.func.isRequired
     }
-
   componentDidMount() {
     document.addEventListener("click", this.incrementCount);
   }
@@ -14,16 +15,13 @@ class Counter extends React.Component {
   }
 
   incrementCount = () => {
-    let oldCount = this.state.count;
-    let newCount = oldCount + 1;
-
-    this.setState({count: newCount });
+    this.props.setCount(this.props.count + 1);
   }
 
     render() {
         return (<div data-testid="counter-component">
             <label htmlFor="count">Count: </label>
-            <span id="count" data-testid="count">{this.state.count}</span>
+            <span id="count" data-testid="count">{this.props.count}</span>
         </div>);
     }
 }
