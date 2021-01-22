@@ -3,7 +3,7 @@ import App from './App';
 
 test('renders the counter', () => {
   render(<App />);
-  const counter = screen.getByTestId('counter');
+  const counter = screen.getByTestId('counter-component');
   expect(counter).toBeInTheDocument();
 });
 
