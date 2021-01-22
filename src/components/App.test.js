@@ -1,11 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders a counter that starts at 0', () => {
+test('renders the counter', () => {
   render(<App />);
   const counter = screen.getByTestId('counter');
   expect(counter).toBeInTheDocument();
-  expect(counter).toHaveTextContent(/^0$/);
+});
+
+test('renders a timer that starts at 00:00:00.00', () => {
+  render(<App />);
+  const timer = screen.getByTestId('timer');
+  expect(timer).toBeInTheDocument();
+  expect(timer).toHaveTextContent(/^00:00:00.00$/);
 });
 
 /*
