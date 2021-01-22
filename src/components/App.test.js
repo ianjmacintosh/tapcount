@@ -13,12 +13,15 @@ test('renders a timer', () => {
   expect(timer).toBeInTheDocument();
 });
 
+test('renders controls', () => {
+    render(<App />);
+    const controls = screen.getByTestId('controls-component');
+    expect(controls).toBeInTheDocument();
+})
+
 /*
 App expectations:
 * Shows a counter
 * Shows a timer
 * Shows a control area
-* The control area has a reset button
-* Tapping anywhere but the control area increments the counter
-* Tapping the reset button resets the counter
 */
