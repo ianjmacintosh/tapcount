@@ -7,11 +7,10 @@ test('renders the counter', () => {
   expect(counter).toBeInTheDocument();
 });
 
-test('renders a timer that starts at 00:00:00.00', () => {
+test('renders a timer', () => {
   render(<App />);
-  const timer = screen.getByTestId('timer');
+  const timer = screen.getByTestId('timer-component');
   expect(timer).toBeInTheDocument();
-  expect(timer).toHaveTextContent(/^00:00:00.00$/);
 });
 
 /*
