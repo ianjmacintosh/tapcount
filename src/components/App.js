@@ -5,7 +5,7 @@ import Controls from "./Controls";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" data-testid="app-component">
       <Counter />
       <Timer />
       <Controls />
