@@ -16,7 +16,6 @@ test('renders a timer', () => {
 /*
 App expectations:
 * Shows a counter
-* Counter starts at zero
 * Shows a timer
 * Shows a control area
 * The control area has a reset button
