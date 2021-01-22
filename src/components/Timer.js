@@ -5,16 +5,22 @@ class Timer extends React.Component {
     static propTypes = {
         elapsedTime: PropTypes.number
     }
-    getFormattedTime = (milliseconds) => {
-        let formattedTime = {
-            seconds: milliseconds % 1000
-        }
+    getFormattedTime = (remainderTime) => {
+        let hours = Math.floor(remainderTime / (60 * (60 * 1000)));
+        remainderTime -= hours * 60 * 60 * 1000;
 
-        if (milliseconds === 0) {
-            return `00:00:00.00`;
-        } else {
-            return `00:00:${formattedTime.seconds}.00`;
-        }
+        let minutes = Math.floor(remainderTime / (60 * 1000));
+        remainderTime -= minutes * 60 * 1000;
+
+        let seconds = Math.floor(remainderTime / 1000);
+        remainderTime -= seconds * 1000;
+
+        let milliseconds = Math.round(remainderTime / 100);
+
+        return `${hours < 10 ? "0" + hours : hours}:` +
+        `${minutes < 10 ? "0" + minutes : minutes}:` +
+        `${seconds < 10 ? "0" + seconds : seconds}.` +
+        `${milliseconds}`;
     }
 
     render() {

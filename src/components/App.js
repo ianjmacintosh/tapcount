@@ -38,7 +38,7 @@ class App extends React.Component {
       this.setState({
         elapsedTime: newElapsedTime
       })
-    }, 10);
+    }, 100);
   }
 
   setTime = (newTime) => {
