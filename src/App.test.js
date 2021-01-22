@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders a counter', () => {
+test('renders a counter that starts at 0', () => {
   render(<App />);
   const counter = screen.getByTestId('counter');
   expect(counter).toBeInTheDocument();
-})
+  expect(counter).toHaveTextContent(/^0$/);
+});
 
 /*
 App expectations:
