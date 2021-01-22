@@ -6,7 +6,16 @@ import Controls from "./Controls";
 
 class App extends React.Component {
   state = {
-    count: 0
+    count: 0,
+    startTime: 0,
+    elapsedTime: 0,
+    timerActive: false
+  }
+
+  handleClick = () => {
+    // Increment count
+    // Start timer
+    this.startTimer();
   }
 
   setCount = (newCount) => {
@@ -17,11 +26,35 @@ class App extends React.Component {
     this.setCount(0);
   }
 
+  startTimer = () => {
+    this.setState({
+      startTime: Date.now(),
+      elapsedTime: 20
+    });
+
+    this.runningTimer = setInterval(() => {
+      let newElapsedTime = Date.now() - this.state.startTime;
+
+      this.setState({
+        elapsedTime: newElapsedTime
+      })
+    }, 10);
+  }
+
+  setTime = (newTime) => {
+    this.setState({ elapsedTime: newTime });
+  }
+
+  resetTime = () => {
+    clearInterval(this.runningTimer);
+    this.setTime(0);
+  }
+
   render() {
     return (
-      <div className="App" data-testid="app-component">
+      <div className="App" data-testid="app-component" onClick={this.handleClick}>
         <Counter count={this.state.count} setCount={this.setCount} />
-        <Timer />
+        <Timer elapsedTime={this.state.elapsedTime} />
         <Controls resetCount={this.resetCount} />
       </div>
     );

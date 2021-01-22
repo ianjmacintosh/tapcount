@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { getByTestId, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -37,4 +37,14 @@ test('clicking on the counter reset button resets the counter', () => {
   userEvent.click(counterReset);
 
   expect(count).toHaveTextContent(/^0$/);
+});
+
+test('clicking on the document starts the timer', () => {
+  render(<App />);
+  const time = screen.getByTestId('time'),
+    app = screen.getByTestId('app-component');
+
+  userEvent.click(app);
+
+  expect(time).not.toHaveTextContent(/^00:00:00.00$/);
 })
