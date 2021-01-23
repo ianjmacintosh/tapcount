@@ -48,3 +48,33 @@ test('clicking on the document starts the timer', () => {
 
   expect(time).not.toHaveTextContent(/^00:00:00.00$/);
 })
+
+test('the timer doesn\'t reset if it\'s already running', () => {
+  jest.useFakeTimers();
+  render(<App />);
+  const time = screen.getByTestId('time'),
+    app = screen.getByTestId('app-component');
+
+  // Start the timer
+  userEvent.click(app);
+
+  // Wait
+  jest.advanceTimersByTime(100000); // This doesn't work as expected, but does what I need
+
+  // Get the time
+  const secondsBeforeClicking = parseInt(time.getAttribute("data-elapsedtime"), 10);
+
+  // Click the app again
+  userEvent.click(app);
+
+  // Wait
+  jest.advanceTimersByTime(100);
+
+  // Make sure the timer isn't less than the time it was when we checked before
+  const secondsAfterClicking = parseInt(time.getAttribute("data-elapsedtime"), 10);
+
+  jest.runOnlyPendingTimers();
+
+  expect(secondsAfterClicking).toBeGreaterThan(secondsBeforeClicking);
+  jest.useRealTimers();
+})

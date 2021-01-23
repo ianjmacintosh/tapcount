@@ -15,7 +15,9 @@ class App extends React.Component {
   handleClick = () => {
     // Increment count
     // Start timer
-    this.startTimer();
+    if (!this.state.timerActive) {
+      this.startTimer();
+    }
   }
 
   setCount = (newCount) => {
@@ -27,6 +29,9 @@ class App extends React.Component {
   }
 
   startTimer = () => {
+    this.setState({
+      timerActive: true
+    })
     this.setState({
       startTime: Date.now(),
       elapsedTime: 20
