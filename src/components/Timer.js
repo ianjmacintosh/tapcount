@@ -2,11 +2,28 @@ import React from "react";
 import PropTypes from "prop-types";
 
 class Timer extends React.Component {
+    componentDidMount() {
+        this.updateTimeState(this.props.elapsedTime);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.elapsedTime !== this.props.elapsedTime) {
+            this.updateTimeState(this.props.elapsedTime)
+        }
+    }
+
     static propTypes = {
         elapsedTime: PropTypes.number
     }
 
-    getFormattedTime = (millisecondsElapsed) => {
+    state = {
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        milliseconds: 0
+    }
+
+    updateTimeState = (millisecondsElapsed) => {
         let remainderTime = millisecondsElapsed;
 
         let hours = Math.floor(remainderTime / (60 * (60 * 1000)));
@@ -20,16 +37,23 @@ class Timer extends React.Component {
 
         let milliseconds = Math.round(remainderTime / 100);
 
-        return `${hours < 10 ? "0" + hours : hours}:` +
-        `${minutes < 10 ? "0" + minutes : minutes}:` +
-        `${seconds < 10 ? "0" + seconds : seconds}.` +
-        `${milliseconds}`;
+        this.setState({
+            hours,
+            minutes,
+            seconds,
+            milliseconds
+        });
     }
 
     render() {
         return (<div data-testid="timer-component">
             <label htmlFor="timer">Timer: </label>
-            <span id="time" data-testid="time">{this.getFormattedTime(this.props.elapsedTime)}</span>
+            <time id="time" data-testid="time">
+                <span data-testid="hours">{this.state.hours < 10 ? "0" + this.state.hours : this.state.hours}</span>:
+                <span data-testid="minutes">{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}</span>:
+                <span data-testid="seconds">{this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds}</span>.
+                <span data-testid="milliseconds">{this.state.milliseconds}</span>
+            </time>
         </div>);
     }
 }
