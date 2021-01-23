@@ -6,13 +6,18 @@ class Controls extends React.Component {
         this.props.resetCount();
     }
 
+    handleResetTimerClick = (e) => {
+        e.stopPropagation();
+        this.props.resetTime();
+    }
+
     render() {
         return (<div data-testid="controls-component" id="controls">
             <h3>Controls</h3>
             <ul>
                 <li>
                     <button onClick={this.handleResetCounterClick} data-testid="counterResetButton">Reset Counter</button></li>
-                <li><button>Reset Timer</button></li>
+                <li><button onClick={this.handleResetTimerClick} data-testid="timer-reset-button">Reset Timer</button></li>
             </ul>
         </div>)
     }

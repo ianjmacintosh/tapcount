@@ -12,6 +12,10 @@ class App extends React.Component {
     timerActive: false
   }
 
+  componentWillUnmount() {
+    clearInterval(this.runningTimer);
+  }
+
   handleClick = () => {
     // Increment count
     this.setCount(this.state.count + 1);
@@ -36,7 +40,7 @@ class App extends React.Component {
     })
     this.setState({
       startTime: Date.now(),
-      elapsedTime: 20
+      elapsedTime: 0
     });
 
     this.runningTimer = setInterval(() => {
@@ -53,6 +57,9 @@ class App extends React.Component {
   }
 
   resetTime = () => {
+    this.setState({
+      timerActive: false
+    })
     clearInterval(this.runningTimer);
     this.setTime(0);
   }
@@ -62,7 +69,7 @@ class App extends React.Component {
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
         <Counter count={this.state.count} setCount={this.setCount} />
         <Timer elapsedTime={this.state.elapsedTime} />
-        <Controls resetCount={this.resetCount} />
+        <Controls resetCount={this.resetCount} resetTime={this.resetTime}/>
       </div>
     );
   }

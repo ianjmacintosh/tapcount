@@ -1,6 +1,17 @@
-import { getByTestId, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+
+// Fake timers using Jest
+beforeEach(() => {
+  jest.useFakeTimers("modern")
+})
+
+// Running all pending timers and switching to real timers using Jest
+afterEach(() => {
+  jest.runOnlyPendingTimers()
+  jest.useRealTimers()
+})
 
 test('renders the counter', () => {
   render(<App />);
@@ -40,7 +51,7 @@ test('clicking on the counter reset button resets the counter', () => {
   expect(count).toHaveTextContent(/^0$/);
 });
 
-test('clicking on the document starts the timer', () => {
+test('clicking on the app starts the timer', () => {
   render(<App />);
   const time = screen.getByTestId('time'),
     app = screen.getByTestId('app-component');
@@ -50,20 +61,23 @@ test('clicking on the document starts the timer', () => {
   expect(time).not.toHaveTextContent(/^00:00:00.00$/);
 })
 
-test('the timer doesn\'t reset if it\'s already running', () => {
-  jest.useFakeTimers();
+test('incrementing does not reset a running timer', () => {
   render(<App />);
   const time = screen.getByTestId('time'),
-    app = screen.getByTestId('app-component');
+    app = screen.getByTestId('app-component'),
+    timeMeasurement1 = parseInt(time.getAttribute("data-elapsedtime"), 10);
+
+  expect(timeMeasurement1).toEqual(0);
 
   // Start the timer
   userEvent.click(app);
 
-  // Wait
-  jest.advanceTimersByTime(100000); // This doesn't work as expected, but does what I need
+  // Wait 100ms
+  jest.advanceTimersByTime(100);
 
   // Get the time
-  const secondsBeforeClicking = parseInt(time.getAttribute("data-elapsedtime"), 10);
+  const timeMeasurement2 = parseInt(time.getAttribute("data-elapsedtime"), 10);
+  expect(timeMeasurement2).toEqual(100);
 
   // Click the app again
   userEvent.click(app);
@@ -71,11 +85,22 @@ test('the timer doesn\'t reset if it\'s already running', () => {
   // Wait
   jest.advanceTimersByTime(100);
 
-  // Make sure the timer isn't less than the time it was when we checked before
-  const secondsAfterClicking = parseInt(time.getAttribute("data-elapsedtime"), 10);
+  // Get the time again
+  const timeMeasurement3 = parseInt(time.getAttribute("data-elapsedtime"), 10);
+  expect(timeMeasurement3).toEqual(200);
+})
 
-  jest.runOnlyPendingTimers();
+test('clicking on the reset timer button resets the timer', () => {
+  render(<App />);
+  const time = screen.getByTestId('time'),
+    resetTimerButton = screen.getByTestId('timer-reset-button'),
+    app = screen.getByTestId('app-component');
 
-  expect(secondsAfterClicking).toBeGreaterThan(secondsBeforeClicking);
-  jest.useRealTimers();
+  userEvent.click(app);
+  jest.advanceTimersByTime(1000);
+
+  expect(time).not.toHaveTextContent(/^00:00:00.0$/);
+  userEvent.click(resetTimerButton);
+
+  expect(time).toHaveTextContent(/^00:00:00.0$/);
 })
