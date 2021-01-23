@@ -104,3 +104,75 @@ test('clicking on the reset timer button resets the timer', () => {
 
   expect(time).toHaveTextContent(/^00:00:00.0$/);
 })
+
+test('pause button stops timer', () => {
+  // Arrange
+  // Load the component
+  render(<App />)
+
+  // Store the useful pieces in memory
+  let app = screen.getByTestId('app-component'),
+    pauseButton = screen.getByTestId('pause-button'),
+    getElapsedTime = () => parseInt(screen.getByTestId('time').getAttribute('data-elapsedtime'), 10);
+
+  // Act
+  // Click the app area to start the timer
+  expect(getElapsedTime()).toEqual(0);
+  userEvent.click(app);
+
+  // Assert
+  // The pause button invites user to pause
+  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
+
+  // Clicking it stops the timer
+  jest.advanceTimersByTime(1000);
+  expect(getElapsedTime()).toEqual(1000);
+
+  userEvent.click(pauseButton);
+  jest.advanceTimersByTime(5000);
+  expect(getElapsedTime()).toEqual(1000);
+
+  // The pause button invites user to resume
+  expect(pauseButton).toHaveTextContent(/^Resume Timer$/);
+
+  // Clicking it again starts the timer where it left off
+  userEvent.click(pauseButton);
+  jest.advanceTimersByTime(1000);
+  expect(getElapsedTime()).toEqual(2000);
+})
+
+test('counting resumes a paused timer', () => {
+  // Arrange
+  // Load the component
+  render(<App />)
+
+  // Store the useful pieces in memory
+  let app = screen.getByTestId('app-component'),
+    pauseButton = screen.getByTestId('pause-button'),
+    getElapsedTime = () => parseInt(screen.getByTestId('time').getAttribute('data-elapsedtime'), 10);
+
+  // Act
+  // Click the app area to start the timer
+  expect(getElapsedTime()).toEqual(0);
+  userEvent.click(app);
+
+  // Assert
+  // The pause button invites user to pause
+  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
+
+  // Clicking it stops the timer
+  jest.advanceTimersByTime(1000);
+  expect(getElapsedTime()).toEqual(1000);
+
+  userEvent.click(pauseButton);
+  jest.advanceTimersByTime(5000);
+  expect(getElapsedTime()).toEqual(1000);
+
+  // Clicking the app again starts the timer where it left off
+  userEvent.click(app);
+  jest.advanceTimersByTime(1000);
+  expect(getElapsedTime()).toEqual(2000);
+
+  // The pause button is aware that the timer has resumed
+  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
+})
