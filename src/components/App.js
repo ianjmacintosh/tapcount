@@ -14,6 +14,8 @@ class App extends React.Component {
 
   handleClick = () => {
     // Increment count
+    this.setCount(this.state.count + 1);
+
     // Start timer
     if (!this.state.timerActive) {
       this.startTimer();

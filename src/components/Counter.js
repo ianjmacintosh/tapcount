@@ -6,17 +6,6 @@ class Counter extends React.Component {
         count: PropTypes.number,
         setCount: PropTypes.func.isRequired
     }
-  componentDidMount() {
-    document.addEventListener("click", this.incrementCount);
-  }
-
-  componentWillUnmount() {
-      document.removeEventListener("click", this.incrementCount);
-  }
-
-  incrementCount = () => {
-    this.props.setCount(this.props.count + 1);
-  }
 
     render() {
         return (<div data-testid="counter-component">

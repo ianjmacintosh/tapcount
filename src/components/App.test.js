@@ -22,9 +22,10 @@ test('renders controls', () => {
 
 test('clicking on the document increments the counter', () => {
   render(<App />);
-  const count = screen.getByTestId('count');
+  const app = screen.getByTestId('app-component'),
+    count = screen.getByTestId('count');
 
-  userEvent.click(document.querySelector('body'))
+  userEvent.click(app)
 
   // Assert
   expect(count).toHaveTextContent(/^1$/);
