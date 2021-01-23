@@ -5,7 +5,10 @@ class Timer extends React.Component {
     static propTypes = {
         elapsedTime: PropTypes.number
     }
-    getFormattedTime = (remainderTime) => {
+
+    getFormattedTime = (millisecondsElapsed) => {
+        let remainderTime = millisecondsElapsed;
+
         let hours = Math.floor(remainderTime / (60 * (60 * 1000)));
         remainderTime -= hours * 60 * 60 * 1000;
 
