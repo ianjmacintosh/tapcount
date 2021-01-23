@@ -20,13 +20,13 @@ class App extends React.Component {
     // Increment count
     this.setCount(this.state.count + 1);
 
-    // Start timer if it's not active
-    if (this.state.elapsedTime !== 0) {
+    // Start timer if it's at 0
+    if (this.state.elapsedTime === 0) {
       this.resetTime();
       this.startTimer();
     }
     // If the timer is active but paused, resume it
-    else {
+    else if (this.state.isTimerPaused) {
       this.startTimer();
     }
   }
@@ -40,17 +40,11 @@ class App extends React.Component {
   }
 
   startTimer = () => {
-    this.setState({ isTimerPaused: false })
-    if (this.state.elapsedTime !== 0) {
-      this.setState({
-        startTime: Date.now() - this.state.elapsedTime
-      })
-    } else {
-      this.setState({
-        startTime: Date.now(),
-        timerActive: true
-      })
-    }
+    this.setState({
+      isTimerPaused: false,
+      startTime: Date.now() - this.state.elapsedTime,
+      timerActive: true
+    })
 
     this.runningTimer = setInterval(() => {
       let newElapsedTime = Date.now() - this.state.startTime;
