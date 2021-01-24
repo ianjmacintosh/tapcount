@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Timer.css"
+
 class Timer extends React.Component {
     componentDidMount() {
         this.updateTimeState(this.props.elapsedTime);

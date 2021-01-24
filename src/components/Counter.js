@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Counter.css"
+
 class Counter extends React.Component {
     static propTypes = {
         count: PropTypes.number,
