@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Controls.css";
+
 class Controls extends React.Component {
     static propTypes = {
         resetCount: PropTypes.func.isRequired,

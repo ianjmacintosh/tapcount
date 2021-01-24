@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap");
+
+button {
+  border: solid 4px #c2f261;
+  color: #c2f261;
+  font-family: "Anonymous Pro", monospace;
+  font-size: 64px;
+  background: #353535;
+}
