@@ -176,3 +176,19 @@ test('counting resumes a paused timer', () => {
   // The pause button is aware that the timer has resumed
   expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
 })
+
+test('max button applies "ready-to-edit" styles to count and time', () => {
+  render(<App />);
+
+  const maxButton = screen.getByTestId('max-button'),
+      count = screen.getByTestId('count'),
+      time = screen.getByTestId('time');
+
+    expect(count).not.toHaveClass('editable');
+    expect(time).not.toHaveClass('editable');
+
+  userEvent.click(maxButton);
+
+  expect(count).toHaveClass('editable');
+  expect(time).toHaveClass('editable');
+})
