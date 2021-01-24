@@ -20,6 +20,12 @@ class Controls extends React.Component {
         this.props.resetTime();
     }
 
+    handleResetBothClick = (e) => {
+        e.stopPropagation();
+        this.props.resetTime();
+        this.props.resetCount();
+    }
+
     handleMaxClick = (e) => {
         e.stopPropagation();
         this.props.enterMaxMode();
@@ -48,7 +54,7 @@ class Controls extends React.Component {
                     <button onClick={this.handleResetTimerClick} data-testid="timer-reset-button">Reset Timer</button>
                 </li>
                 <li>
-                    <button onClick={this.handleResetBothClick} data-testid="reset-button">Reset Timer</button>
+                    <button onClick={this.handleResetBothClick} data-testid="reset-button">Reset</button>
                 </li>
                 <li>
                     <button onClick={this.handlePauseButtonClick} data-testid="pause-button">{this.props.isTimerPaused ? "Resume Timer" : "Pause Timer"}</button>
