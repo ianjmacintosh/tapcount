@@ -19,6 +19,11 @@ class App extends React.Component {
   }
 
   handleClick = () => {
+    // Bail if the user is trying to set a max
+    if (this.state.settingMaxCount || this.state.settingMaxTime) {
+      this.exitMaxMode();
+      return;
+    }
     // Increment count
     this.setCount(this.state.count + 1);
 
@@ -37,6 +42,13 @@ class App extends React.Component {
     this.setState({
       settingMaxCount: true,
       settingMaxTime: true
+    })
+  }
+
+  exitMaxMode = () => {
+    this.setState({
+      settingMaxCount: false,
+      settingMaxTime: false
     })
   }
 
