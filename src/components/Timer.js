@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./Timer.css"
+
 class Timer extends React.Component {
     componentDidMount() {
         this.updateTimeState(this.props.elapsedTime);
@@ -13,7 +15,8 @@ class Timer extends React.Component {
     }
 
     static propTypes = {
-        elapsedTime: PropTypes.number
+        elapsedTime: PropTypes.number,
+        settingMax: PropTypes.bool
     }
 
     state = {
@@ -47,12 +50,11 @@ class Timer extends React.Component {
 
     render() {
         return (<div data-testid="timer-component">
-            <label htmlFor="timer">Timer: </label>
-            <time id="time" data-testid="time" data-elapsedtime={this.props.elapsedTime}>
+            <time id="time" data-testid="time" data-elapsedtime={this.props.elapsedTime} className={this.props.settingMax ? "editable" : ""}>
                 <span data-testid="hours">{this.state.hours < 10 ? "0" + this.state.hours : this.state.hours}</span>:
                 <span data-testid="minutes">{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}</span>:
                 <span data-testid="seconds">{this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds}</span>.
-                <span data-testid="milliseconds">{this.state.milliseconds}</span>
+                <span data-testid="milliseconds">{this.state.milliseconds === 10 ? "0" : this.state.milliseconds}</span>
             </time>
         </div>);
     }
