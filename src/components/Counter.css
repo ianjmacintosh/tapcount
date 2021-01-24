@@ -1,5 +1,9 @@
 @import "../utilities/animations.css";
 
+.counter {
+  font-size: 120px;
+}
+
 .editable {
   color: red;
 }
