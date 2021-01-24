@@ -42,11 +42,10 @@ class Controls extends React.Component {
 
     render() {
         return (<div data-testid="controls-component" id="controls">
-            <h3>Controls</h3>
             <ul>
-                <li>
+                {/* <li>
                     <button onClick={this.handleMaxClick} data-testid="max-button">Set Max</button>
-                </li>
+                </li> */}
                 <li>
                     <button onClick={this.handlePauseButtonClick} data-testid="pause-button">{this.props.isTimerPaused ? "Resume Timer" : "Pause Timer"}</button>
                 </li>

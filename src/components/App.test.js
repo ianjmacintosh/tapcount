@@ -177,40 +177,40 @@ test('counting resumes a paused timer', () => {
   expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
 })
 
-test('max button applies "ready-to-edit" styles to count and time', () => {
-  render(<App />);
+// test('max button applies "ready-to-edit" styles to count and time', () => {
+//   render(<App />);
 
-  const maxButton = screen.getByTestId('max-button'),
-      count = screen.getByTestId('count'),
-      time = screen.getByTestId('time');
+//   const maxButton = screen.getByTestId('max-button'),
+//       count = screen.getByTestId('count'),
+//       time = screen.getByTestId('time');
 
-    expect(count).not.toHaveClass('editable');
-    expect(time).not.toHaveClass('editable');
+//     expect(count).not.toHaveClass('editable');
+//     expect(time).not.toHaveClass('editable');
 
-  userEvent.click(maxButton);
+//   userEvent.click(maxButton);
 
-  expect(count).toHaveClass('editable');
-  expect(time).toHaveClass('editable');
-})
+//   expect(count).toHaveClass('editable');
+//   expect(time).toHaveClass('editable');
+// })
 
-test('"ready-to-edit" styles can be removed from count and time', () => {
-  render(<App />);
+// test('"ready-to-edit" styles can be removed from count and time', () => {
+//   render(<App />);
 
-  const app = screen.getByTestId('app-component'),
-    maxButton = screen.getByTestId('max-button'),
-      count = screen.getByTestId('count'),
-      time = screen.getByTestId('time');
+//   const app = screen.getByTestId('app-component'),
+//     maxButton = screen.getByTestId('max-button'),
+//       count = screen.getByTestId('count'),
+//       time = screen.getByTestId('time');
 
-    expect(count).not.toHaveClass('editable');
-    expect(time).not.toHaveClass('editable');
+//     expect(count).not.toHaveClass('editable');
+//     expect(time).not.toHaveClass('editable');
 
-  userEvent.click(maxButton);
+//   userEvent.click(maxButton);
 
-  expect(count).toHaveClass('editable');
-  expect(time).toHaveClass('editable');
+//   expect(count).toHaveClass('editable');
+//   expect(time).toHaveClass('editable');
 
-  userEvent.click(app);
+//   userEvent.click(app);
 
-  expect(count).not.toHaveClass('editable');
-  expect(time).not.toHaveClass('editable');
-})
+//   expect(count).not.toHaveClass('editable');
+//   expect(time).not.toHaveClass('editable');
+// })
