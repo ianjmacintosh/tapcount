@@ -44,7 +44,7 @@ test('clicking on the document increments the counter', () => {
 
 test('clicking on the counter reset button resets the counter', () => {
   render(<App />);
-  const counterReset = screen.getByTestId('counterResetButton');
+  const counterReset = screen.getByTestId('reset-button');
   const count = screen.getByTestId('count');
   userEvent.click(counterReset);
 
@@ -93,14 +93,14 @@ test('incrementing does not reset a running timer', () => {
 test('clicking on the reset timer button resets the timer', () => {
   render(<App />);
   const time = screen.getByTestId('time'),
-    resetTimerButton = screen.getByTestId('timer-reset-button'),
+    resetButton = screen.getByTestId('reset-button'),
     app = screen.getByTestId('app-component');
 
   userEvent.click(app);
   jest.advanceTimersByTime(1000);
 
   expect(time).not.toHaveTextContent(/^00:00:00.0$/);
-  userEvent.click(resetTimerButton);
+  userEvent.click(resetButton);
 
   expect(time).toHaveTextContent(/^00:00:00.0$/);
 })

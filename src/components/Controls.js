@@ -48,16 +48,10 @@ class Controls extends React.Component {
                     <button onClick={this.handleMaxClick} data-testid="max-button">Set Max</button>
                 </li>
                 <li>
-                    <button onClick={this.handleResetCounterClick} data-testid="counterResetButton">Reset Counter</button>
-                </li>
-                <li>
-                    <button onClick={this.handleResetTimerClick} data-testid="timer-reset-button">Reset Timer</button>
+                    <button onClick={this.handlePauseButtonClick} data-testid="pause-button">{this.props.isTimerPaused ? "Resume Timer" : "Pause Timer"}</button>
                 </li>
                 <li>
                     <button onClick={this.handleResetBothClick} data-testid="reset-button">Reset</button>
-                </li>
-                <li>
-                    <button onClick={this.handlePauseButtonClick} data-testid="pause-button">{this.props.isTimerPaused ? "Resume Timer" : "Pause Timer"}</button>
                 </li>
             </ul>
         </div>)
