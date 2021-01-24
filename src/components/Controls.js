@@ -43,7 +43,7 @@ class Controls extends React.Component {
     }
 
     render() {
-        return (<div data-testid="controls-component" id="controls">
+        return (<div data-testid="controls-component" className="controls">
             <ul>
                 {/* <li>
                     <button onClick={this.handleMaxClick} data-testid="max-button">Set Max</button>
