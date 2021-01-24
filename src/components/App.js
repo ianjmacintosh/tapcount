@@ -9,7 +9,9 @@ class App extends React.Component {
     count: 0,
     startTime: 0,
     elapsedTime: 0,
-    isTimerPaused: false
+    isTimerPaused: false,
+    settingMaxCount: false,
+    settingMaxTime: false
   }
 
   componentWillUnmount() {
@@ -29,6 +31,13 @@ class App extends React.Component {
     else if (this.state.isTimerPaused) {
       this.startTimer();
     }
+  }
+
+  enterMaxMode = () => {
+    this.setState({
+      settingMaxCount: true,
+      settingMaxTime: true
+    })
   }
 
   setCount = (newCount) => {
@@ -77,13 +86,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
-        <Counter count={this.state.count} setCount={this.setCount} />
-        <Timer elapsedTime={this.state.elapsedTime} />
+        <Counter count={this.state.count} setCount={this.setCount} settingMax={this.state.settingMaxCount} />
+        <Timer elapsedTime={this.state.elapsedTime} settingMax={this.state.settingMaxTime} />
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}
           pauseTimer={this.pauseTimer}
           startTimer={this.startTimer}
+          enterMaxMode={this.enterMaxMode}
           isTimerPaused={this.state.isTimerPaused}/>
       </div>
     );
