@@ -25,7 +25,3 @@ test('controls have max, pause, and reset buttons', () => {
     const resetButton = within(controls).getByTestId('reset-button');
     expect(resetButton).toBeInTheDocument();
 })
-
-// * The control area has a reset button
-// * Tapping anywhere but the control area increments the counter
-// * Tapping the reset button resets the counter
