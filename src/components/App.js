@@ -97,6 +97,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
+        <Average
+          count={this.state.count}
+          elapsedTime={this.state.elapsedTime}/>
         <Counter
           count={this.state.count}
           setCount={this.setCount}
@@ -108,9 +111,6 @@ class App extends React.Component {
           settingMax={this.state.settingMaxTime}
           isTimerActive={this.state.isTimerActive}
           didTimerStart={this.state.elapsedTime !== 0} />
-        <Average
-          count={this.state.count}
-          elapsedTime={this.state.elapsedTime}/>
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}

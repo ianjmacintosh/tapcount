@@ -1,5 +1,6 @@
 .average {
-  align-items: center;
+  padding-top: 20px;
+  align-items: top;
   justify-content: center;
   display: flex;
 }
