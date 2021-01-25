@@ -1,7 +1,7 @@
 @import "../utilities/animations.css";
 
 .counter {
-  font-size: 120px;
+  font-size: 20vh;
   align-items: center;
   justify-content: center;
   display: flex;
