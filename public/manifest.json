@@ -3,12 +3,12 @@
   "name": "TapCount",
   "icons": [
     {
-      "src": "stopwatch.svg",
+      "src": "stopwatch-centered.svg",
       "type": "image/svg"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#c2f261",
+  "background_color": "#c2f261"
 }
