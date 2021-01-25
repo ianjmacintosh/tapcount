@@ -2,6 +2,7 @@ import React from "react";
 import '../App.css';
 import Counter from "./Counter";
 import Timer from "./Timer";
+import Average from "./Average";
 import Controls from "./Controls";
 
 class App extends React.Component {
@@ -107,6 +108,9 @@ class App extends React.Component {
           settingMax={this.state.settingMaxTime}
           isTimerActive={this.state.isTimerActive}
           didTimerStart={this.state.elapsedTime !== 0} />
+        <Average
+          count={this.state.count}
+          elapsedTime={this.state.elapsedTime}/>
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}

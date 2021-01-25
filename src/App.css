@@ -19,11 +19,11 @@ body {
   background-color: #353535;
   color: #c2f261;
   font-family: "Anonymous Pro", monospace;
-  font-size: 48px;
+  font-size: 36px;
   height: 100%;
   width: 100%;
   text-align: center;
-  grid-template-rows: 2fr 1fr auto;
+  grid-template-rows: 2fr 1fr 1fr auto;
 }
 
 ::selection {
