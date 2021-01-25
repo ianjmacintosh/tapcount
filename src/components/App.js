@@ -9,7 +9,7 @@ class App extends React.Component {
     count: 0,
     startTime: 0,
     elapsedTime: 0,
-    isTimerPaused: false,
+    isTimerActive: false,
     settingMaxCount: false,
     settingMaxTime: false
   }
@@ -32,8 +32,8 @@ class App extends React.Component {
       this.resetTime();
       this.startTimer();
     }
-    // If the timer is active but paused, resume it
-    else if (this.state.isTimerPaused) {
+    // If the timer is not active, resume it
+    else if (!this.state.isTimerActive) {
       this.startTimer();
     }
   }
@@ -61,12 +61,6 @@ class App extends React.Component {
   }
 
   startTimer = () => {
-    this.setState({
-      isTimerPaused: false,
-      startTime: Date.now() - this.state.elapsedTime,
-      timerActive: true
-    })
-
     this.runningTimer = setInterval(() => {
       let newElapsedTime = Date.now() - this.state.startTime;
 
@@ -74,11 +68,16 @@ class App extends React.Component {
         elapsedTime: newElapsedTime
       })
     }, 100);
+
+    this.setState({
+      isTimerActive: true,
+      startTime: Date.now() - this.state.elapsedTime
+    })
   }
 
   pauseTimer = () => {
-    this.setState({ isTimerPaused: true })
     clearInterval(this.runningTimer);
+    this.setState({ isTimerActive: false })
   }
 
   setTime = (newTime) => {
@@ -87,26 +86,34 @@ class App extends React.Component {
 
   resetTime = () => {
     this.setState({
-      timerActive: false,
       startTime: Date.now(),
-      elapsedTime: 0
+      elapsedTime: 0,
+      isTimerActive: false
     })
     clearInterval(this.runningTimer);
-    this.setTime(0);
   }
 
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
-        <Counter count={this.state.count} setCount={this.setCount} settingMax={this.state.settingMaxCount} />
-        <Timer elapsedTime={this.state.elapsedTime} settingMax={this.state.settingMaxTime} />
+        <Counter
+          count={this.state.count}
+          setCount={this.setCount}
+          settingMax={this.state.settingMaxCount}
+          isTimerActive={this.state.isTimerActive}
+          didTimerStart={this.state.elapsedTime !== 0}/>
+        <Timer
+          elapsedTime={this.state.elapsedTime}
+          settingMax={this.state.settingMaxTime}
+          isTimerActive={this.state.isTimerActive}
+          didTimerStart={this.state.elapsedTime !== 0} />
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}
           pauseTimer={this.pauseTimer}
           startTimer={this.startTimer}
           enterMaxMode={this.enterMaxMode}
-          isTimerPaused={this.state.isTimerPaused}/>
+          isTimerActive={this.state.isTimerActive}/>
       </div>
     );
   }

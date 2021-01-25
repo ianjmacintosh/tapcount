@@ -1,0 +1,9 @@
+@keyframes blink {
+  0% {
+    visibility: visible;
+  }
+
+  50% {
+    visibility: hidden;
+  }
+}

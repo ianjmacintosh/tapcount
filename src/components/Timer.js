@@ -16,7 +16,9 @@ class Timer extends React.Component {
 
     static propTypes = {
         elapsedTime: PropTypes.number,
-        settingMax: PropTypes.bool
+        settingMax: PropTypes.bool,
+        isTimerActive: PropTypes.bool,
+        didTimerStart: PropTypes.bool,
     }
 
     state = {
@@ -49,7 +51,7 @@ class Timer extends React.Component {
     }
 
     render() {
-        return (<div data-testid="timer-component">
+        return (<div className={"timer " + (!this.props.isTimerActive && this.props.didTimerStart ? "paused" : "")} data-testid="timer-component">
             <time id="time" data-testid="time" data-elapsedtime={this.props.elapsedTime} className={this.props.settingMax ? "editable" : ""}>
                 <span data-testid="hours">{this.state.hours < 10 ? "0" + this.state.hours : this.state.hours}</span>:
                 <span data-testid="minutes">{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}</span>:

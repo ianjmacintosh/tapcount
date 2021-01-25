@@ -166,40 +166,34 @@ test('counting resumes a paused timer', () => {
   expect(getElapsedTime()).toEqual(2000);
 })
 
-// test('max button applies "ready-to-edit" styles to count and time', () => {
-//   render(<App />);
+test('pausing makes the counter and timer flash', () => {
+  render(<App />);
 
-//   const maxButton = screen.getByTestId('max-button'),
-//       count = screen.getByTestId('count'),
-//       time = screen.getByTestId('time');
+  let app = screen.getByTestId('app-component'),
+    startButton = screen.getByTestId('pause-button'),
+    counter = screen.getByTestId('counter-component'),
+    timer = screen.getByTestId('timer-component'),
+    getElapsedTime = () => parseInt(screen.getByTestId('time').getAttribute('data-elapsedtime'), 10);
 
-//     expect(count).not.toHaveClass('editable');
-//     expect(time).not.toHaveClass('editable');
+  expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
 
-//   userEvent.click(maxButton);
+  userEvent.click(app);
 
-//   expect(count).toHaveClass('editable');
-//   expect(time).toHaveClass('editable');
-// })
+  jest.advanceTimersByTime(1000);
 
-// test('"ready-to-edit" styles can be removed from count and time', () => {
-//   render(<App />);
+  expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
 
-//   const app = screen.getByTestId('app-component'),
-//     maxButton = screen.getByTestId('max-button'),
-//       count = screen.getByTestId('count'),
-//       time = screen.getByTestId('time');
+  userEvent.click(startButton);
 
-//     expect(count).not.toHaveClass('editable');
-//     expect(time).not.toHaveClass('editable');
+  expect(getElapsedTime()).toEqual(1000);
 
-//   userEvent.click(maxButton);
+  expect(counter).toHaveClass('paused');
+  expect(timer).toHaveClass('paused');
 
-//   expect(count).toHaveClass('editable');
-//   expect(time).toHaveClass('editable');
+  userEvent.click(startButton);
 
-//   userEvent.click(app);
-
-//   expect(count).not.toHaveClass('editable');
-//   expect(time).not.toHaveClass('editable');
-// })
+  expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
+})

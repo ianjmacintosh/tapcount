@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.paused {
+  animation: 2s infinite steps(1, start) blink;
+}
+
 .editable {
   color: red;
 }

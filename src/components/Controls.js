@@ -9,7 +9,7 @@ class Controls extends React.Component {
         resetTime: PropTypes.func.isRequired,
         pauseTimer: PropTypes.func.isRequired,
         startTimer: PropTypes.func.isRequired,
-        isTimerPaused: PropTypes.bool,
+        isTimerActive: PropTypes.bool,
         enterMaxMode: PropTypes.func
     }
     handleResetCounterClick = (e) => {
@@ -35,10 +35,10 @@ class Controls extends React.Component {
 
     handlePauseButtonClick = (e) => {
         e.stopPropagation();
-        if (this.props.isTimerPaused) {
-            this.props.startTimer();
-        } else {
+        if (this.props.isTimerActive) {
             this.props.pauseTimer();
+        } else {
+            this.props.startTimer();
         }
     }
 
