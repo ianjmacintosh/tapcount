@@ -6,7 +6,7 @@ button {
   font-family: "Anonymous Pro", monospace;
   font-size: 24px;
   background: #353535;
-  padding: 40px;
+  padding: 40px 0;
   cursor: pointer;
 }
 
