@@ -19,14 +19,22 @@ test('renders the counter', () => {
   expect(counter).toBeInTheDocument();
 });
 
+
 test('renders a timer', () => {
   render(<App />);
   const timer = screen.getByTestId('timer-component');
   expect(timer).toBeInTheDocument();
 });
 
+test('renders an average', () => {
+  render(<App />);
+  const average = screen.getByTestId('average-component');
+
+  expect(average).toBeInTheDocument();
+})
+
 test('renders controls', () => {
-    render(<App />);
+  render(<App />);
     const controls = screen.getByTestId('controls-component');
     expect(controls).toBeInTheDocument();
 });

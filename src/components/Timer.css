@@ -1,5 +1,11 @@
 @import "../utilities/animations.css";
 
+.timer {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
 .editable {
   color: red;
 }
