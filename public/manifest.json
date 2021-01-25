@@ -4,7 +4,8 @@
   "icons": [
     {
       "src": "stopwatch-centered.svg",
-      "type": "image/svg"
+      "type": "image/svg",
+      "sizes": "192x192"
     }
   ],
   "start_url": ".",
