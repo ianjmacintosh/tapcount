@@ -2,6 +2,9 @@
 
 .counter {
   font-size: 120px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .editable {
