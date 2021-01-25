@@ -8,6 +8,16 @@ button {
   background: #353535;
   padding: 40px 0;
   cursor: pointer;
+  user-select: none;
+}
+
+button:active {
+  background: #c2f261;
+  color: #353535;
+}
+
+button:focus {
+  outline: none;
 }
 
 .controls ul {
