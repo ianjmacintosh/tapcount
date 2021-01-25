@@ -121,9 +121,6 @@ test('pause button stops timer', () => {
   userEvent.click(app);
 
   // Assert
-  // The pause button invites user to pause
-  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
-
   // Clicking it stops the timer
   jest.advanceTimersByTime(1000);
   expect(getElapsedTime()).toEqual(1000);
@@ -131,9 +128,6 @@ test('pause button stops timer', () => {
   userEvent.click(pauseButton);
   jest.advanceTimersByTime(5000);
   expect(getElapsedTime()).toEqual(1000);
-
-  // The pause button invites user to resume
-  expect(pauseButton).toHaveTextContent(/^Resume Timer$/);
 
   // Clicking it again starts the timer where it left off
   userEvent.click(pauseButton);
@@ -157,8 +151,6 @@ test('counting resumes a paused timer', () => {
   userEvent.click(app);
 
   // Assert
-  // The pause button invites user to pause
-  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
 
   // Clicking it stops the timer
   jest.advanceTimersByTime(1000);
@@ -172,9 +164,6 @@ test('counting resumes a paused timer', () => {
   userEvent.click(app);
   jest.advanceTimersByTime(1000);
   expect(getElapsedTime()).toEqual(2000);
-
-  // The pause button is aware that the timer has resumed
-  expect(pauseButton).toHaveTextContent(/^Pause Timer$/);
 })
 
 // test('max button applies "ready-to-edit" styles to count and time', () => {
