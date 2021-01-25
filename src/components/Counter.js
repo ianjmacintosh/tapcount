@@ -7,11 +7,13 @@ class Counter extends React.Component {
     static propTypes = {
         count: PropTypes.number,
         setCount: PropTypes.func.isRequired,
-        settingMax: PropTypes.bool
+        settingMax: PropTypes.bool,
+        isTimerActive: PropTypes.bool,
+        didTimerStart: PropTypes.bool,
     }
 
     render() {
-        return (<div className="counter" data-testid="counter-component">
+        return (<div className={"counter " + (!this.props.isTimerActive && this.props.didTimerStart ? "paused" : "")} data-testid="counter-component">
             <span id="count" data-testid="count" className={this.props.settingMax ? "editable" : ""}>{this.props.count}</span>
         </div>);
     }
