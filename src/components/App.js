@@ -102,7 +102,11 @@ class App extends React.Component {
           settingMax={this.state.settingMaxCount}
           isTimerActive={this.state.isTimerActive}
           didTimerStart={this.state.elapsedTime !== 0}/>
-        <Timer elapsedTime={this.state.elapsedTime} settingMax={this.state.settingMaxTime} />
+        <Timer
+          elapsedTime={this.state.elapsedTime}
+          settingMax={this.state.settingMaxTime}
+          isTimerActive={this.state.isTimerActive}
+          didTimerStart={this.state.elapsedTime !== 0} />
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}

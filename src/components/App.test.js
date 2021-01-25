@@ -166,29 +166,34 @@ test('counting resumes a paused timer', () => {
   expect(getElapsedTime()).toEqual(2000);
 })
 
-test('pausing makes the counter flash', () => {
+test('pausing makes the counter and timer flash', () => {
   render(<App />);
 
   let app = screen.getByTestId('app-component'),
     startButton = screen.getByTestId('pause-button'),
     counter = screen.getByTestId('counter-component'),
+    timer = screen.getByTestId('timer-component'),
     getElapsedTime = () => parseInt(screen.getByTestId('time').getAttribute('data-elapsedtime'), 10);
 
   expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
 
   userEvent.click(app);
 
   jest.advanceTimersByTime(1000);
 
   expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
 
   userEvent.click(startButton);
 
   expect(getElapsedTime()).toEqual(1000);
 
   expect(counter).toHaveClass('paused');
+  expect(timer).toHaveClass('paused');
 
   userEvent.click(startButton);
 
   expect(counter).not.toHaveClass('paused');
+  expect(timer).not.toHaveClass('paused');
 })
