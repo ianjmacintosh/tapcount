@@ -205,3 +205,26 @@ test('pausing makes the counter and timer flash', () => {
   expect(counter).not.toHaveClass('paused');
   expect(timer).not.toHaveClass('paused');
 })
+
+test('the average is accurate', () => {
+  render(<App />);
+
+  const app = screen.getByTestId('app-component'),
+    average = screen.getByTestId('average-component'),
+    count = screen.getByTestId('count'),
+    time = screen.getByTestId('time');
+
+  expect(average).toHaveTextContent('0/min');
+
+  // Click 61 times
+  [...Array(61)].forEach(() => {
+    userEvent.click(app);
+  });
+
+  // Wait 3 minutes
+  jest.advanceTimersByTime(180000);
+
+  expect(count).toHaveTextContent('61');
+  expect(time).toHaveTextContent('00:03:00.0');
+  expect(average).toHaveTextContent('20/min');
+})

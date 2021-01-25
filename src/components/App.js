@@ -108,7 +108,9 @@ class App extends React.Component {
           settingMax={this.state.settingMaxTime}
           isTimerActive={this.state.isTimerActive}
           didTimerStart={this.state.elapsedTime !== 0} />
-        <Average />
+        <Average
+          count={this.state.count}
+          elapsedTime={this.state.elapsedTime}/>
         <Controls
           resetCount={this.resetCount}
           resetTime={this.resetTime}
