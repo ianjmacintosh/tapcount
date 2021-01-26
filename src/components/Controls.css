@@ -1,19 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap");
 
 button {
-  border: solid 4px #c2f261;
-  color: #c2f261;
+  border: none;
   font-family: "Anonymous Pro", monospace;
   font-size: 24px;
-  background: #353535;
+  background: #c2f261;
+  color: #353535;
   padding: 40px 0;
   cursor: pointer;
   user-select: none;
 }
 
 button:active {
-  background: #c2f261;
-  color: #353535;
+  background: #353535;
 }
 
 button:focus {
