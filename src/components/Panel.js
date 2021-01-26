@@ -3,8 +3,18 @@ import React from "react";
 import "./Panel.css";
 
 class Panel extends React.Component {
+    state = {
+        isPanelOpen: false,
+    }
+
+    togglePanel = () => {
+        this.setState({
+            isPanelOpen: !this.state.isPanelOpen
+        });
+    }
+
     render() {
-        return (<div className="panel" data-testid="panel-component">
+        return (<div className={"panel " + (this.state.isPanelOpen ? "": "closed") } data-testid="panel-component" onClick={this.togglePanel}>
             <div className="panel-content">
                 {this.props.children}
             </div>

@@ -32,7 +32,13 @@ body {
 .panel {
   position: absolute;
   width: 100%;
+  height: 80px;
+  transition: height 75ms;
+}
+
+.panel.closed {
   height: 20px;
+  position: absolute;
 }
 
 .panel-content {
