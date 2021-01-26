@@ -39,6 +39,15 @@ test('renders controls', () => {
     expect(controls).toBeInTheDocument();
 });
 
+test('renders panel', () => {
+  render(<App />);
+
+  const app = screen.getByTestId('app-component'),
+    panel = screen.getByTestId('panel-component');
+
+  expect(panel).toBeInTheDocument();
+});
+
 test('clicking on the document increments the counter', () => {
   render(<App />);
   const app = screen.getByTestId('app-component'),

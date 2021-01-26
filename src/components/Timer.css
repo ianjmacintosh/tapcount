@@ -1,8 +1,8 @@
 @import "../utilities/animations.css";
 
 .timer {
-  padding-top: 20px;
-  align-items: top;
+  padding: 20px 0;
+  align-items: center;
   justify-content: center;
   display: flex;
 }
