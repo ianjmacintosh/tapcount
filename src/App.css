@@ -15,15 +15,39 @@ body {
 }
 
 .App {
-  display: grid;
   background-color: #353535;
   color: #c2f261;
   font-family: "Anonymous Pro", monospace;
   font-size: 36px;
+}
+
+.main-area {
+  display: grid;
   height: 100%;
   width: 100%;
   text-align: center;
-  grid-template-rows: 1fr 2fr 1fr auto;
+  grid-template-rows: 2fr 1fr auto;
+}
+
+.panel {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  transition: height 75ms;
+}
+
+.panel.hidden {
+  height: 0;
+}
+
+.panel.closed {
+  height: 20px;
+}
+
+.panel-content {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 ::selection {

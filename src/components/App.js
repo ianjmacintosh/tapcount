@@ -1,5 +1,7 @@
 import React from "react";
 import '../App.css';
+
+import Panel from "./Panel";
 import Counter from "./Counter";
 import Timer from "./Timer";
 import Average from "./Average";
@@ -97,27 +99,31 @@ class App extends React.Component {
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
-        <Average
-          count={this.state.count}
-          elapsedTime={this.state.elapsedTime}/>
-        <Counter
-          count={this.state.count}
-          setCount={this.setCount}
-          settingMax={this.state.settingMaxCount}
-          isTimerActive={this.state.isTimerActive}
-          didTimerStart={this.state.elapsedTime !== 0}/>
-        <Timer
-          elapsedTime={this.state.elapsedTime}
-          settingMax={this.state.settingMaxTime}
-          isTimerActive={this.state.isTimerActive}
-          didTimerStart={this.state.elapsedTime !== 0} />
-        <Controls
-          resetCount={this.resetCount}
-          resetTime={this.resetTime}
-          pauseTimer={this.pauseTimer}
-          startTimer={this.startTimer}
-          enterMaxMode={this.enterMaxMode}
-          isTimerActive={this.state.isTimerActive}/>
+        <Panel>
+          <Average
+            count={this.state.count}
+            elapsedTime={this.state.elapsedTime}/>
+        </Panel>
+        <div className="main-area">
+          <Counter
+            count={this.state.count}
+            setCount={this.setCount}
+            settingMax={this.state.settingMaxCount}
+            isTimerActive={this.state.isTimerActive}
+            didTimerStart={this.state.elapsedTime !== 0}/>
+          <Timer
+            elapsedTime={this.state.elapsedTime}
+            settingMax={this.state.settingMaxTime}
+            isTimerActive={this.state.isTimerActive}
+            didTimerStart={this.state.elapsedTime !== 0} />
+          <Controls
+            resetCount={this.resetCount}
+            resetTime={this.resetTime}
+            pauseTimer={this.pauseTimer}
+            startTimer={this.startTimer}
+            enterMaxMode={this.enterMaxMode}
+            isTimerActive={this.state.isTimerActive}/>
+        </div>
       </div>
     );
   }
