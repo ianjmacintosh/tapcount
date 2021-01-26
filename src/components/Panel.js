@@ -7,7 +7,9 @@ class Panel extends React.Component {
         isPanelOpen: false,
     }
 
-    togglePanel = () => {
+    togglePanel = (e) => {
+        e.stopPropagation();
+
         this.setState({
             isPanelOpen: !this.state.isPanelOpen
         });

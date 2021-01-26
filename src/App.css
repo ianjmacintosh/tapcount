@@ -36,9 +36,12 @@ body {
   transition: height 75ms;
 }
 
+.panel.hidden {
+  height: 0;
+}
+
 .panel.closed {
   height: 20px;
-  position: absolute;
 }
 
 .panel-content {
