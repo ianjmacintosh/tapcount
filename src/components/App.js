@@ -7,6 +7,8 @@ import Timer from "./Timer";
 import Statistics from "./Statistics";
 import Controls from "./Controls";
 
+import { getTimeObject } from "../utilities/utilities";
+
 class App extends React.Component {
   state = {
     count: 0,
@@ -102,7 +104,8 @@ class App extends React.Component {
         <Panel>
           <Statistics
             count={this.state.count}
-            elapsedTime={this.state.elapsedTime}/>
+            elapsedTime={this.state.elapsedTime}
+            timeObject={getTimeObject(this.state.elapsedTime)}/>
         </Panel>
         <div className="main-area">
           <Counter

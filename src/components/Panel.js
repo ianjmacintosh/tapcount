@@ -17,12 +17,16 @@ class Panel extends React.Component {
     }
 
     render() {
-        return (<div className={"panel " + (this.state.isPanelOpen ? "": "closed") } data-testid="panel-component" onClick={this.togglePanel}>
+        if (this.state.isPanelOpen) {
+            return (<div className={"panel " + (this.state.isPanelOpen ? "": "closed") } data-testid="panel-component" onClick={this.togglePanel}>
             <div className="panel-content">
                 {this.props.children}
             </div>
         </div>);
+    } else {
+        return null;
     }
+}
 }
 
 export default Panel;
