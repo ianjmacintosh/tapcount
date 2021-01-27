@@ -49,7 +49,7 @@ class Controls extends React.Component {
                     <button onClick={this.handleMaxClick} data-testid="max-button">Set Max</button>
                 </li> */}
                 <li>
-                    <button onClick={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
+                    <button className="pause-button" onClick={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
                 </li>
                 <li>
                     <button onClick={this.handleResetBothClick} data-testid="reset-button">Reset</button>
