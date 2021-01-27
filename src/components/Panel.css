@@ -1,4 +1,43 @@
 .panel {
-  background: #c2f261;
-  color: #353535;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: grid;
+  font-size: 20px;
+}
+
+.panel.hidden {
+  height: 0;
+}
+
+.panel-content {
+  border: solid 4px #c2f261;
+  padding: 20px;
+  background: #353535;
+  color: #c2f261;
+  margin: auto;
+  width: 80%;
+}
+
+table caption {
+  font-size: 24px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+table {
+  border-spacing: none;
+  border-collapse: collapse;
+}
+
+table th {
+  text-align: left;
+  padding: 0;
+}
+
+table td {
+  text-align: right;
 }
