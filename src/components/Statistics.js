@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { getTimeObject } from "../utilities/utilities"
+
 import './Statistics.css';
 
 class Statistics extends React.Component {
