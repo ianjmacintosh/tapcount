@@ -113,7 +113,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={"App " + (!this.state.isTimerActive && this.state.elapsedTime !== 0 ? "started-and-paused" : "")} data-testid="app-component" onClick={this.handleClick}>
+      <div
+        className={"App " +
+          (!this.state.isTimerActive ? "paused ": "") +
+          (this.state.elapsedTime !== 0 ? "started " : "") +
+          (this.state.isPanelOpen ? "panel-open " : "")
+        }
+        data-testid="app-component"
+        onClick={this.handleClick}>
         <Panel
           isOpen={this.state.isPanelOpen}
           closePanel={this.closePanel}

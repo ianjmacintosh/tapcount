@@ -55,7 +55,7 @@ class Controls extends React.Component {
                     <button className="pause-button" onClick={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
                 </li>
                 <li>
-                    <button onClick={this.handleResetButtonClick} data-testid="reset-button">Reset</button>
+                    <button className="reset-button" onClick={this.handleResetButtonClick} data-testid="reset-button">Reset</button>
                 </li>
             </ul>
         </div>)

@@ -21,7 +21,7 @@ button {
   overflow: hidden;
   width: 100%;
   height: 100%;
-  padding: 10px 0;
+  padding: 30px 0;
   border: none;
   background: var(--button-bg-color);
   text-shadow: 0 1px 0px #fff;
@@ -32,7 +32,8 @@ button {
   transition: all 20ms;
 }
 
-.started-and-paused .pause-button {
+.started.paused .pause-button,
+.panel-open button {
   box-shadow: 0 1px 0 var(--button-border-color), 0 3px 3px var(--shadow);
   transform: translateY(2px);
 }
@@ -46,7 +47,7 @@ button:focus {
 } */
 
 button:active,
-.started-and-paused .pause-button:active {
+.started.paused .pause-button:active {
   box-shadow: 0 0px 0 var(--button-border-color), 0 1px 3px var(--shadow);
   transform: translateY(3px);
 }
