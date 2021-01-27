@@ -1,22 +1,54 @@
 @import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap");
 
-button {
-  border: none;
-  font-family: "Anonymous Pro", monospace;
-  font-size: 24px;
-  background: #c2f261;
-  color: #353535;
-  padding: 40px 0;
-  cursor: pointer;
-  user-select: none;
+html {
+  --background: #353535;
+  --button-bg-color: #c2f261;
+  --button-border-color: #628201;
+  --button-text-color: #353535;
+  --shadow: rgba(0, 0, 0, 0.3);
 }
 
-button:active {
-  background: #353535;
+body {
+  background: var(--background);
+}
+
+button {
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 3px;
+  font-family: "Anonymous Pro", monospace;
+  margin: 0 auto 5px auto;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  border: none;
+  background: var(--button-bg-color);
+  text-shadow: 0 1px 0px #fff;
+  box-shadow: 0 3px 0 var(--button-border-color), 0 5px 3px var(--shadow);
+  color: #353535;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 20ms;
+}
+
+.started-and-paused .pause-button {
+  box-shadow: 0 1px 0 var(--button-border-color), 0 3px 3px var(--shadow);
+  transform: translateY(2px);
 }
 
 button:focus {
   outline: none;
+}
+/* button:hover {
+  box-shadow: 0 2px 0 var(--button-border-color), 0 4px 3px var(--shadow);
+  transform: translateY(1px);
+} */
+
+button:active,
+.started-and-paused .pause-button:active {
+  box-shadow: 0 0px 0 var(--button-border-color), 0 1px 3px var(--shadow);
+  transform: translateY(3px);
 }
 
 .controls ul {
@@ -24,9 +56,9 @@ button:focus {
   list-style: none;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1px;
+  grid-gap: 10px;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 .controls li button {
