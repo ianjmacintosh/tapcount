@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.3);
-  display: grid;
+  display: flex;
   font-size: 20px;
   z-index: 2;
 }
@@ -19,6 +19,8 @@
   padding: 20px;
   background: #353535;
   color: #c2f261;
+  justify-content: center;
+  align-self: center;
   margin: auto;
   width: 80%;
 }
