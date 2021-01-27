@@ -24,7 +24,21 @@ class Statistics extends React.Component {
     }
 
     render() {
-        return (<span data-testid="average-component">{this.average()}/min</span>);
+        return (<span data-testid="average-component">
+            <table>
+                    <caption>Session Statistics</caption>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Speed</th>
+                            <td>{this.average()}/min</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Duration</th>
+                            <td>{this.props.duration}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </span>);
     }
 }
 
