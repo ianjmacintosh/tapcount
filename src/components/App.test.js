@@ -43,13 +43,14 @@ test('clicking on the document increments the counter', () => {
   expect(count).toHaveTextContent(/^1$/);
 });
 
-test('clicking on the counter reset button resets the counter', () => {
+test('clicking on the reset button opens the panel', () => {
   render(<App />);
   const counterReset = screen.getByTestId('reset-button');
-  const count = screen.getByTestId('count');
   userEvent.click(counterReset);
 
-  expect(count).toHaveTextContent(/^0$/);
+  const panel = screen.getByTestId('panel-component');
+
+  expect(panel).toBeInTheDocument();
 });
 
 test('clicking on the app starts the timer', () => {

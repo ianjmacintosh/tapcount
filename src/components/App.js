@@ -99,26 +99,26 @@ class App extends React.Component {
     clearInterval(this.runningTimer);
   }
 
-  closePanel = (e) => {
-    e.stopPropagation();
-
-    this.setState({
-        isPanelOpen: false
-    });
-  }
-
-  openPanel = (e) => {
-    e.stopPropagation();
-
+  openPanel = () => {
     this.setState({
       isPanelOpen: true
     })
   }
 
+  closePanel = () => {
+    this.setState({
+        isPanelOpen: false
+    });
+  }
+
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
-        <Panel isOpen={this.state.isPanelOpen} closePanel={this.closePanel}>
+        <Panel
+          isOpen={this.state.isPanelOpen}
+          closePanel={this.closePanel}
+          resetCount={this.resetCount}
+          resetTime={this.resetTime}>
           <Statistics
             count={this.state.count}
             elapsedTime={this.state.elapsedTime}
@@ -137,6 +137,7 @@ class App extends React.Component {
             isTimerActive={this.state.isTimerActive}
             didTimerStart={this.state.elapsedTime !== 0} />
           <Controls
+            openPanel={this.openPanel}
             resetCount={this.resetCount}
             resetTime={this.resetTime}
             pauseTimer={this.pauseTimer}
