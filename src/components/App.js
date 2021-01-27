@@ -16,7 +16,8 @@ class App extends React.Component {
     elapsedTime: 0,
     isTimerActive: false,
     settingMaxCount: false,
-    settingMaxTime: false
+    settingMaxTime: false,
+    isPanelOpen: false,
   }
 
   componentWillUnmount() {
@@ -98,10 +99,26 @@ class App extends React.Component {
     clearInterval(this.runningTimer);
   }
 
+  closePanel = (e) => {
+    e.stopPropagation();
+
+    this.setState({
+        isPanelOpen: false
+    });
+  }
+
+  openPanel = (e) => {
+    e.stopPropagation();
+
+    this.setState({
+      isPanelOpen: true
+    })
+  }
+
   render() {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
-        <Panel>
+        <Panel isOpen={this.state.isPanelOpen} closePanel={this.closePanel}>
           <Statistics
             count={this.state.count}
             elapsedTime={this.state.elapsedTime}
