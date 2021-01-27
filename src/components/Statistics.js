@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import './Average.css';
+import './Statistics.css';
 
-class Average extends React.Component {
+class Statistics extends React.Component {
     static propTypes = {
         count: PropTypes.number,
         elapsedTime: PropTypes.number,
@@ -24,10 +24,8 @@ class Average extends React.Component {
     }
 
     render() {
-        return (<div className="average" data-testid="average-component">
-            Speed: {this.average()}/min
-        </div>);
+        return (<span data-testid="average-component">{this.average()}/min</span>);
     }
 }
 
-export default Average;
+export default Statistics;
