@@ -92,18 +92,28 @@ test('incrementing does not reset a running timer', () => {
   expect(timeMeasurement3).toEqual(200);
 })
 
-test('clicking on the reset timer button resets the timer', () => {
+test('closing the stats panel resets the time and counter', () => {
   render(<App />);
   const time = screen.getByTestId('time'),
     resetButton = screen.getByTestId('reset-button'),
-    app = screen.getByTestId('app-component');
+    app = screen.getByTestId('app-component'),
+    count = screen.getByTestId('count');
 
+  userEvent.click(app);
   userEvent.click(app);
   jest.advanceTimersByTime(1000);
 
-  expect(time).not.toHaveTextContent(/^00:00:00.0$/);
+  expect(count).toHaveTextContent('2');
+  expect(time).toHaveTextContent(/^00:00:01.0$/);
   userEvent.click(resetButton);
 
+  expect(count).toHaveTextContent('2');
+  expect(time).toHaveTextContent(/^00:00:01.0$/);
+
+  const panel = screen.getByTestId('panel-component');
+  userEvent.click(panel);
+
+  expect(count).toHaveTextContent('0');
   expect(time).toHaveTextContent(/^00:00:00.0$/);
 })
 
