@@ -1,4 +1,5 @@
 import React from "react";
+import Statistics from "./Statistics"
 
 import "./Panel.css";
 

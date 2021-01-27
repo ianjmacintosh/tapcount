@@ -4,7 +4,7 @@ import '../App.css';
 import Panel from "./Panel";
 import Counter from "./Counter";
 import Timer from "./Timer";
-import Average from "./Average";
+import Statistics from "./Statistics";
 import Controls from "./Controls";
 
 class App extends React.Component {
@@ -100,7 +100,7 @@ class App extends React.Component {
     return (
       <div className="App" data-testid="app-component" onClick={this.handleClick}>
         <Panel>
-          <Average
+          <Statistics
             count={this.state.count}
             elapsedTime={this.state.elapsedTime}/>
         </Panel>
