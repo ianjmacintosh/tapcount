@@ -26,26 +26,10 @@ test('renders a timer', () => {
   expect(timer).toBeInTheDocument();
 });
 
-test('renders an average', () => {
-  render(<App />);
-  const average = screen.getByTestId('average-component');
-
-  expect(average).toBeInTheDocument();
-})
-
 test('renders controls', () => {
   render(<App />);
     const controls = screen.getByTestId('controls-component');
     expect(controls).toBeInTheDocument();
-});
-
-test('renders panel', () => {
-  render(<App />);
-
-  const app = screen.getByTestId('app-component'),
-    panel = screen.getByTestId('panel-component');
-
-  expect(panel).toBeInTheDocument();
 });
 
 test('clicking on the document increments the counter', () => {
@@ -59,13 +43,14 @@ test('clicking on the document increments the counter', () => {
   expect(count).toHaveTextContent(/^1$/);
 });
 
-test('clicking on the counter reset button resets the counter', () => {
+test('clicking on the reset button opens the panel', () => {
   render(<App />);
   const counterReset = screen.getByTestId('reset-button');
-  const count = screen.getByTestId('count');
   userEvent.click(counterReset);
 
-  expect(count).toHaveTextContent(/^0$/);
+  const panel = screen.getByTestId('panel-component');
+
+  expect(panel).toBeInTheDocument();
 });
 
 test('clicking on the app starts the timer', () => {
@@ -107,18 +92,28 @@ test('incrementing does not reset a running timer', () => {
   expect(timeMeasurement3).toEqual(200);
 })
 
-test('clicking on the reset timer button resets the timer', () => {
+test('closing the stats panel resets the time and counter', () => {
   render(<App />);
   const time = screen.getByTestId('time'),
     resetButton = screen.getByTestId('reset-button'),
-    app = screen.getByTestId('app-component');
+    app = screen.getByTestId('app-component'),
+    count = screen.getByTestId('count');
 
+  userEvent.click(app);
   userEvent.click(app);
   jest.advanceTimersByTime(1000);
 
-  expect(time).not.toHaveTextContent(/^00:00:00.0$/);
+  expect(count).toHaveTextContent('2');
+  expect(time).toHaveTextContent(/^00:00:01.0$/);
   userEvent.click(resetButton);
 
+  expect(count).toHaveTextContent('2');
+  expect(time).toHaveTextContent(/^00:00:01.0$/);
+
+  const panel = screen.getByTestId('panel-component');
+  userEvent.click(panel);
+
+  expect(count).toHaveTextContent('0');
   expect(time).toHaveTextContent(/^00:00:00.0$/);
 })
 
@@ -213,27 +208,4 @@ test('pausing makes the counter and timer flash', () => {
 
   expect(counter).not.toHaveClass('paused');
   expect(timer).not.toHaveClass('paused');
-})
-
-test('the average is accurate', () => {
-  render(<App />);
-
-  const app = screen.getByTestId('app-component'),
-    average = screen.getByTestId('average-component'),
-    count = screen.getByTestId('count'),
-    time = screen.getByTestId('time');
-
-  expect(average).toHaveTextContent('0/min');
-
-  // Click 61 times
-  [...Array(61)].forEach(() => {
-    userEvent.click(app);
-  });
-
-  // Wait 3 minutes
-  jest.advanceTimersByTime(180000);
-
-  expect(count).toHaveTextContent('61');
-  expect(time).toHaveTextContent('00:03:00.0');
-  expect(average).toHaveTextContent('20/min');
 })

@@ -7,7 +7,7 @@
   display: flex;
 }
 
-.paused {
+.started.paused .counter {
   animation: 2s infinite steps(1, start) blink;
 }
 

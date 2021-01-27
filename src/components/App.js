@@ -4,8 +4,10 @@ import '../App.css';
 import Panel from "./Panel";
 import Counter from "./Counter";
 import Timer from "./Timer";
-import Average from "./Average";
+import Statistics from "./Statistics";
 import Controls from "./Controls";
+
+import { getTimeObject } from "../utilities/utilities";
 
 class App extends React.Component {
   state = {
@@ -14,7 +16,8 @@ class App extends React.Component {
     elapsedTime: 0,
     isTimerActive: false,
     settingMaxCount: false,
-    settingMaxTime: false
+    settingMaxTime: false,
+    isPanelOpen: false,
   }
 
   componentWillUnmount() {
@@ -96,13 +99,37 @@ class App extends React.Component {
     clearInterval(this.runningTimer);
   }
 
+  openPanel = () => {
+    this.setState({
+      isPanelOpen: true
+    })
+  }
+
+  closePanel = () => {
+    this.setState({
+        isPanelOpen: false
+    });
+  }
+
   render() {
     return (
-      <div className={"App " + (!this.state.isTimerActive && this.state.elapsedTime !== 0 ? "started-and-paused" : "")} data-testid="app-component" onClick={this.handleClick}>
-        <Panel>
-          <Average
+      <div
+        className={"App " +
+          (!this.state.isTimerActive ? "paused ": "") +
+          (this.state.elapsedTime !== 0 ? "started " : "") +
+          (this.state.isPanelOpen ? "panel-open " : "")
+        }
+        data-testid="app-component"
+        onClick={this.handleClick}>
+        <Panel
+          isOpen={this.state.isPanelOpen}
+          closePanel={this.closePanel}
+          resetCount={this.resetCount}
+          resetTime={this.resetTime}>
+          <Statistics
             count={this.state.count}
-            elapsedTime={this.state.elapsedTime}/>
+            elapsedTime={this.state.elapsedTime}
+            timeObject={getTimeObject(this.state.elapsedTime)}/>
         </Panel>
         <div className="main-area">
           <Counter
@@ -117,6 +144,7 @@ class App extends React.Component {
             isTimerActive={this.state.isTimerActive}
             didTimerStart={this.state.elapsedTime !== 0} />
           <Controls
+            openPanel={this.openPanel}
             resetCount={this.resetCount}
             resetTime={this.resetTime}
             pauseTimer={this.pauseTimer}

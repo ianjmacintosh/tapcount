@@ -22,10 +22,13 @@ class Controls extends React.Component {
         this.props.resetTime();
     }
 
-    handleResetBothClick = (e) => {
+    handleResetButtonClick = (e) => {
         e.stopPropagation();
-        this.props.resetTime();
-        this.props.resetCount();
+
+        this.props.pauseTimer();
+        this.props.openPanel();
+        // this.props.resetTime();
+        // this.props.resetCount();
     }
 
     handleMaxClick = (e) => {
@@ -52,7 +55,7 @@ class Controls extends React.Component {
                     <button className="pause-button" onClick={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
                 </li>
                 <li>
-                    <button onClick={this.handleResetBothClick} data-testid="reset-button">Reset</button>
+                    <button className="reset-button" onClick={this.handleResetButtonClick} data-testid="reset-button">Reset</button>
                 </li>
             </ul>
         </div>)

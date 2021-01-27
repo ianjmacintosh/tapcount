@@ -29,27 +29,6 @@ body {
   grid-template-rows: 2fr 1fr auto;
 }
 
-.panel {
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  transition: height 75ms;
-}
-
-.panel.hidden {
-  height: 0;
-}
-
-.panel.closed {
-  height: 20px;
-}
-
-.panel-content {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-
 ::selection {
   background: #c2f261;
   color: #353535;

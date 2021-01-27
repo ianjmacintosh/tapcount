@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { getTimeObject } from "../utilities/utilities";
 
 import "./Timer.css"
 
@@ -29,25 +30,9 @@ class Timer extends React.Component {
     }
 
     updateTimeState = (millisecondsElapsed) => {
-        let remainderTime = millisecondsElapsed;
+        const newTimeObject = getTimeObject(millisecondsElapsed);
 
-        let hours = Math.floor(remainderTime / (60 * (60 * 1000)));
-        remainderTime -= hours * 60 * 60 * 1000;
-
-        let minutes = Math.floor(remainderTime / (60 * 1000));
-        remainderTime -= minutes * 60 * 1000;
-
-        let seconds = Math.floor(remainderTime / 1000);
-        remainderTime -= seconds * 1000;
-
-        let milliseconds = Math.round(remainderTime / 100);
-
-        this.setState({
-            hours,
-            minutes,
-            seconds,
-            milliseconds
-        });
+        this.setState(newTimeObject);
     }
 
     render() {
