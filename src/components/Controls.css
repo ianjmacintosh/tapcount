@@ -3,8 +3,9 @@
 html {
   --background: #353535;
   --button-bg-color: #c2f261;
-  --button-active-bg-color: #9de212;
-  --button-border-color: #88c310;
+  --button-active-bg-color: #a3f500;
+  --button-border-color: #78ac0e;
+  --button-side-color: #88c310;
   --button-text-color: #353535;
   --shadow: rgba(0, 0, 0, 0.3);
 }
@@ -16,6 +17,7 @@ body {
 button {
   text-align: center;
   vertical-align: middle;
+  border: solid 1px var(--button-border-color);
   border-radius: 3px;
   font-family: "Anonymous Pro", monospace;
   margin: 0 auto 5px auto;
@@ -23,32 +25,31 @@ button {
   width: 100%;
   height: 100%;
   padding: 30px 0;
-  border: none;
   background: var(--button-bg-color);
   text-shadow: 0 1px 0px #fff;
-  box-shadow: 0 8px 0 var(--button-border-color), 0 5px 3px var(--shadow);
+  box-shadow: 0 8px 0 var(--button-side-color), 0 5px 3px var(--shadow);
   color: #353535;
   font-size: 16px;
   cursor: pointer;
-  transition: all 50ms, background-color 500ms;
+  transition: all 50ms, background-color 750ms;
+  user-select: none;
 }
 
-.started .pause-button,
+.started:not(.paused) .pause-button,
 .started.paused.panel-open .pause-button,
 .panel-open .reset-button {
   background: var(--button-active-bg-color);
-  box-shadow: 0 1px 0 var(--button-border-color), 0 3px 3px var(--shadow);
+  box-shadow: 0 1px 0 var(--button-side-color), 0 3px 3px var(--shadow);
   transform: translateY(7px);
 }
 
 .started.paused .pause-button {
-  background: var(--button-bg-color);
-  box-shadow: 0 8px 0 var(--button-border-color), 0 5px 3px var(--shadow);
+  box-shadow: 0 8px 0 var(--button-side-color), 0 5px 3px var(--shadow);
   transform: translateY(0);
 }
 
 /* button:hover {
-  box-shadow: 0 2px 0 var(--button-border-color), 0 4px 3px var(--shadow);
+  box-shadow: 0 2px 0 var(--button-side-color), 0 4px 3px var(--shadow);
   transform: translateY(1px);
 } */
 
