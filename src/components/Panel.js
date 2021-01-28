@@ -17,11 +17,13 @@ class Panel extends React.Component {
 
     render() {
         if (this.props.isOpen) {
-            return (<div className="panel" data-testid="panel-component" onMouseDown={this.handlePanelBackgroundClick}>
-            <div className="panel-content" onMouseDown={this.handlePanelContentClick}>
-                {this.props.children}
-            </div>
-        </div>);
+            return (
+                <div className="panel" data-testid="panel-component">
+                    <div className="panel-backdrop" data-testid="panel-backdrop" onMouseDown={this.handlePanelBackgroundClick} />
+                    <div className="panel-content" onMouseDown={this.handlePanelContentClick}>
+                        {this.props.children}
+                    </div>
+                </div>);
     } else {
         return null;
     }
