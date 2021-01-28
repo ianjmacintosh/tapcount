@@ -43,6 +43,23 @@ test('clicking on the document increments the counter', () => {
   expect(count).toHaveTextContent(/^1$/);
 });
 
+test('clicking on the reset button stops the clock', () => {
+  render(<App />);
+  const app = screen.getByTestId('app-component'),
+    time = screen.getByTestId('time'),
+    counterReset = screen.getByTestId('reset-button');
+
+  userEvent.click(app);
+
+  jest.advanceTimersByTime(1000);
+
+  userEvent.click(counterReset);
+
+  jest.advanceTimersByTime(2000);
+
+  expect(time).toHaveTextContent('00:00:01.0');
+});
+
 test('clicking on the reset button opens the panel', () => {
   render(<App />);
   const counterReset = screen.getByTestId('reset-button');

@@ -24,7 +24,12 @@ class App extends React.Component {
     clearInterval(this.runningTimer);
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
+    // Bail if clicking on a button
+    if (e.target.localName === "button") {
+        return;
+    }
+
     // Bail if the user is trying to set a max
     if (this.state.settingMaxCount || this.state.settingMaxTime) {
       this.exitMaxMode();
@@ -120,7 +125,7 @@ class App extends React.Component {
           (this.state.isPanelOpen ? "panel-open " : "")
         }
         data-testid="app-component"
-        onClick={this.handleClick}>
+        onMouseDown={this.handleClick}>
         <Panel
           isOpen={this.state.isPanelOpen}
           closePanel={this.closePanel}

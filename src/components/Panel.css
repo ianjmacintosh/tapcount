@@ -13,10 +13,7 @@
   display: flex;
   font-size: 20px;
   z-index: 2;
-}
-
-.panel.hidden {
-  height: 0;
+  cursor: pointer;
 }
 
 .panel-content {
@@ -28,4 +25,5 @@
   align-self: center;
   margin: auto;
   width: 80%;
+  cursor: auto;
 }
