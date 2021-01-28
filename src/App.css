@@ -27,6 +27,7 @@ body {
   width: 100%;
   text-align: center;
   grid-template-rows: 2fr 1fr auto;
+  user-select: none;
 }
 
 ::selection {
