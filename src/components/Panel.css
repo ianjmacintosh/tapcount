@@ -3,7 +3,18 @@
   --dialog-bg: #353535;
   --dialog-border: #c2f261;
   --dialog-color: #c2f261;
+}
 
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+}
+
+.panel-backdrop {
   position: absolute;
   top: 0;
   right: 0;
@@ -13,10 +24,7 @@
   display: flex;
   font-size: 20px;
   z-index: 2;
-}
-
-.panel.hidden {
-  height: 0;
+  cursor: pointer;
 }
 
 .panel-content {
@@ -28,4 +36,8 @@
   align-self: center;
   margin: auto;
   width: 80%;
+  cursor: auto;
+  z-index: 3;
+  position: relative;
+  font-size: 20px;
 }

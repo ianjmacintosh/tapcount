@@ -13,31 +13,23 @@ class Controls extends React.Component {
         enterMaxMode: PropTypes.func
     }
     handleResetCounterClick = (e) => {
-        e.stopPropagation();
         this.props.resetCount();
     }
 
     handleResetTimerClick = (e) => {
-        e.stopPropagation();
         this.props.resetTime();
     }
 
     handleResetButtonClick = (e) => {
-        e.stopPropagation();
-
         this.props.pauseTimer();
         this.props.openPanel();
-        // this.props.resetTime();
-        // this.props.resetCount();
     }
 
     handleMaxClick = (e) => {
-        e.stopPropagation();
         this.props.enterMaxMode();
     }
 
     handlePauseButtonClick = (e) => {
-        e.stopPropagation();
         if (this.props.isTimerActive) {
             this.props.pauseTimer();
         } else {
@@ -48,14 +40,11 @@ class Controls extends React.Component {
     render() {
         return (<div data-testid="controls-component" className="controls">
             <ul>
-                {/* <li>
-                    <button onClick={this.handleMaxClick} data-testid="max-button">Set Max</button>
-                </li> */}
                 <li>
-                    <button className="pause-button" onClick={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
+                    <button className="pause-button" onMouseDown={this.handlePauseButtonClick} data-testid="pause-button">Start/Stop</button>
                 </li>
                 <li>
-                    <button className="reset-button" onClick={this.handleResetButtonClick} data-testid="reset-button">Reset</button>
+                    <button className="reset-button" onMouseDown={this.handleResetButtonClick} data-testid="reset-button">Reset</button>
                 </li>
             </ul>
         </div>)

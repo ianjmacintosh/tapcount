@@ -43,6 +43,23 @@ test('clicking on the document increments the counter', () => {
   expect(count).toHaveTextContent(/^1$/);
 });
 
+test('clicking on the reset button stops the clock', () => {
+  render(<App />);
+  const app = screen.getByTestId('app-component'),
+    time = screen.getByTestId('time'),
+    counterReset = screen.getByTestId('reset-button');
+
+  userEvent.click(app);
+
+  jest.advanceTimersByTime(1000);
+
+  userEvent.click(counterReset);
+
+  jest.advanceTimersByTime(2000);
+
+  expect(time).toHaveTextContent('00:00:01.0');
+});
+
 test('clicking on the reset button opens the panel', () => {
   render(<App />);
   const counterReset = screen.getByTestId('reset-button');
@@ -110,8 +127,8 @@ test('closing the stats panel resets the time and counter', () => {
   expect(count).toHaveTextContent('2');
   expect(time).toHaveTextContent(/^00:00:01.0$/);
 
-  const panel = screen.getByTestId('panel-component');
-  userEvent.click(panel);
+  const panelBackdrop = screen.getByTestId('panel-backdrop');
+  userEvent.click(panelBackdrop);
 
   expect(count).toHaveTextContent('0');
   expect(time).toHaveTextContent(/^00:00:00.0$/);
